@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2A244F6CFEBC606582B3F77A /* Pods_Books.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C697D98E20B5FB39C6B5C42D /* Pods_Books.framework */; };
 		8D110C64896B42770A9A9022 /* Pods_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EB4C53D9AEB0FCCB852E3CE /* Pods_Model.framework */; };
+		D427F3001FA663FF008271BD /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D427F2FF1FA663FF008271BD /* Actions.swift */; };
+		D427F3031FA6672A008271BD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D427F3021FA6672A008271BD /* AppState.swift */; };
+		D427F3051FA6685D008271BD /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D427F3041FA6685D008271BD /* AppReducer.swift */; };
 		D46BAFF21F8D22A7008DF800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BAFF11F8D22A7008DF800 /* AppDelegate.swift */; };
 		D46BAFF41F8D22A7008DF800 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BAFF31F8D22A7008DF800 /* MasterViewController.swift */; };
 		D46BAFF61F8D22A7008DF800 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BAFF51F8D22A7008DF800 /* DetailViewController.swift */; };
@@ -21,6 +24,10 @@
 		D46BB02A1F8D2385008DF800 /* Model.h in Headers */ = {isa = PBXBuildFile; fileRef = D46BB01A1F8D2385008DF800 /* Model.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D46BB02D1F8D2385008DF800 /* Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BB0181F8D2384008DF800 /* Model.framework */; };
 		D46BB02E1F8D2385008DF800 /* Model.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D46BB0181F8D2384008DF800 /* Model.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D46BB0371F8D4CE6008DF800 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BB0361F8D4CE6008DF800 /* Book.swift */; };
+		D46BB0391F8D4D46008DF800 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BB0381F8D4D46008DF800 /* Author.swift */; };
+		D46BB03F1F8D4F08008DF800 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BB03E1F8D4F08008DF800 /* States.swift */; };
+		D46BB0421F8D4F28008DF800 /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BB0411F8D4F28008DF800 /* Reducers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +81,9 @@
 		9EB4C53D9AEB0FCCB852E3CE /* Pods_Model.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Model.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C25ED1ABAE1280CBE6757AC0 /* Pods-Books.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Books.release.xcconfig"; path = "Pods/Target Support Files/Pods-Books/Pods-Books.release.xcconfig"; sourceTree = "<group>"; };
 		C697D98E20B5FB39C6B5C42D /* Pods_Books.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Books.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D427F2FF1FA663FF008271BD /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		D427F3021FA6672A008271BD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		D427F3041FA6685D008271BD /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		D46BAFEE1F8D22A7008DF800 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46BAFF11F8D22A7008DF800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D46BAFF31F8D22A7008DF800 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +101,10 @@
 		D46BB0201F8D2385008DF800 /* ModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46BB0271F8D2385008DF800 /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		D46BB0291F8D2385008DF800 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D46BB0361F8D4CE6008DF800 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		D46BB0381F8D4D46008DF800 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		D46BB03E1F8D4F08008DF800 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		D46BB0411F8D4F28008DF800 /* Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
 		F9617F9EF1DBA963BEC0F97E /* Pods-Model.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Model.release.xcconfig"; path = "Pods/Target Support Files/Pods-Model/Pods-Model.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +155,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D427F3011FA666EA008271BD /* State */ = {
+			isa = PBXGroup;
+			children = (
+				D427F3021FA6672A008271BD /* AppState.swift */,
+				D427F3041FA6685D008271BD /* AppReducer.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
 		D46BAFE51F8D22A7008DF800 = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +191,7 @@
 		D46BAFF01F8D22A7008DF800 /* Books */ = {
 			isa = PBXGroup;
 			children = (
+				D427F3011FA666EA008271BD /* State */,
 				D46BAFF11F8D22A7008DF800 /* AppDelegate.swift */,
 				D46BAFF31F8D22A7008DF800 /* MasterViewController.swift */,
 				D46BAFF51F8D22A7008DF800 /* DetailViewController.swift */,
@@ -191,8 +215,11 @@
 		D46BB0191F8D2385008DF800 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D46BB01A1F8D2385008DF800 /* Model.h */,
-				D46BB01B1F8D2385008DF800 /* Info.plist */,
+				D46BB03C1F8D4EDA008DF800 /* Objects */,
+				D427F2FF1FA663FF008271BD /* Actions.swift */,
+				D46BB0411F8D4F28008DF800 /* Reducers.swift */,
+				D46BB03E1F8D4F08008DF800 /* States.swift */,
+				D46BB0401F8D4F16008DF800 /* Supporting Files */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +231,24 @@
 				D46BB0291F8D2385008DF800 /* Info.plist */,
 			);
 			path = ModelTests;
+			sourceTree = "<group>";
+		};
+		D46BB03C1F8D4EDA008DF800 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				D46BB0381F8D4D46008DF800 /* Author.swift */,
+				D46BB0361F8D4CE6008DF800 /* Book.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		D46BB0401F8D4F16008DF800 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D46BB01A1F8D2385008DF800 /* Model.h */,
+				D46BB01B1F8D2385008DF800 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		DED8970F040D2A1DCA31630F /* Frameworks */ = {
@@ -329,6 +374,7 @@
 					};
 					D46BB0171F8D2384008DF800 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					D46BB01F1F8D2385008DF800 = {
@@ -490,6 +536,8 @@
 				D46BAFF61F8D22A7008DF800 /* DetailViewController.swift in Sources */,
 				D46BAFF41F8D22A7008DF800 /* MasterViewController.swift in Sources */,
 				D46BAFF21F8D22A7008DF800 /* AppDelegate.swift in Sources */,
+				D427F3031FA6672A008271BD /* AppState.swift in Sources */,
+				D427F3051FA6685D008271BD /* AppReducer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +553,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D427F3001FA663FF008271BD /* Actions.swift in Sources */,
+				D46BB03F1F8D4F08008DF800 /* States.swift in Sources */,
+				D46BB0391F8D4D46008DF800 /* Author.swift in Sources */,
+				D46BB0421F8D4F28008DF800 /* Reducers.swift in Sources */,
+				D46BB0371F8D4CE6008DF800 /* Book.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,6 +725,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 25DFB5EF35F1B5CDB888B844 /* Pods-Books.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 862S24PMKE;
@@ -688,6 +742,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C25ED1ABAE1280CBE6757AC0 /* Pods-Books.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 862S24PMKE;
@@ -738,6 +793,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 216C5D1858153C7060C9B595 /* Pods-Model.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -752,6 +808,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pause.Model;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -763,6 +820,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F9617F9EF1DBA963BEC0F97E /* Pods-Model.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
