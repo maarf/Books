@@ -1,11 +1,3 @@
-//
-//  DetailViewController.swift
-//  Books
-//
-//  Created by Martins on 10/10/2017.
-//  Copyright © 2017 FullContact. All rights reserved.
-//
-
 import UIKit
 
 class DetailViewController: UIViewController {
