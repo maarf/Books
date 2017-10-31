@@ -7,4 +7,5 @@ end
 
 target "Model" do
   pod "ReSwift"
+  pod "Result"
 end
