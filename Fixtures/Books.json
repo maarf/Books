@@ -1,0 +1,25 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "author": "Miguel de Cervantes",
+      "title": "Don Quixote",
+      "publishedAt": "1605-01-16T00:00:00Z",
+      "coverURL": "https://images-na.ssl-images-amazon.com/images/I/41d-rugLMRL.jpg"
+    },
+    {
+      "id": "2",
+      "author": "Marcel Proust",
+      "title": "In Search of Lost Time",
+      "publishedAt": "1913-11-14T00:00:00Z",
+      "coverURL": "https://images-na.ssl-images-amazon.com/images/I/51me-a8zgcL.jpg"
+    },
+    {
+      "id": "3",
+      "author": "James Joyce",
+      "title": "Ulysses",
+      "publishedAt": "1922-02-02T00:00:00Z",
+      "coverURL": "https://images-na.ssl-images-amazon.com/images/I/41FXsLoY%2BOL.jpg            "
+    }
+  ]
+}
