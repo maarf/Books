@@ -13,6 +13,7 @@
 		D427F3031FA6672A008271BD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D427F3021FA6672A008271BD /* AppState.swift */; };
 		D427F3051FA6685D008271BD /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D427F3041FA6685D008271BD /* AppReducer.swift */; };
 		D427F3081FA66E00008271BD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D427F3071FA66E00008271BD /* MainViewController.swift */; };
+		D427F33E1FA91A87008271BD /* BooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D427F33D1FA91A87008271BD /* BooksService.swift */; };
 		D46BAFF21F8D22A7008DF800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BAFF11F8D22A7008DF800 /* AppDelegate.swift */; };
 		D46BAFF41F8D22A7008DF800 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BAFF31F8D22A7008DF800 /* MasterViewController.swift */; };
 		D46BAFF61F8D22A7008DF800 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BAFF51F8D22A7008DF800 /* DetailViewController.swift */; };
@@ -26,7 +27,6 @@
 		D46BB02D1F8D2385008DF800 /* Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BB0181F8D2384008DF800 /* Model.framework */; };
 		D46BB02E1F8D2385008DF800 /* Model.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D46BB0181F8D2384008DF800 /* Model.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D46BB0371F8D4CE6008DF800 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BB0361F8D4CE6008DF800 /* Book.swift */; };
-		D46BB0391F8D4D46008DF800 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BB0381F8D4D46008DF800 /* Author.swift */; };
 		D46BB03F1F8D4F08008DF800 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BB03E1F8D4F08008DF800 /* States.swift */; };
 		D46BB0421F8D4F28008DF800 /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BB0411F8D4F28008DF800 /* Reducers.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +86,7 @@
 		D427F3021FA6672A008271BD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D427F3041FA6685D008271BD /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		D427F3071FA66E00008271BD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D427F33D1FA91A87008271BD /* BooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksService.swift; sourceTree = "<group>"; };
 		D46BAFEE1F8D22A7008DF800 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46BAFF11F8D22A7008DF800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D46BAFF31F8D22A7008DF800 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		D46BB0271F8D2385008DF800 /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		D46BB0291F8D2385008DF800 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D46BB0361F8D4CE6008DF800 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		D46BB0381F8D4D46008DF800 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		D46BB03E1F8D4F08008DF800 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		D46BB0411F8D4F28008DF800 /* Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
 		F9617F9EF1DBA963BEC0F97E /* Pods-Model.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Model.release.xcconfig"; path = "Pods/Target Support Files/Pods-Model/Pods-Model.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +176,16 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		D427F33F1FA91A95008271BD /* State */ = {
+			isa = PBXGroup;
+			children = (
+				D427F2FF1FA663FF008271BD /* Actions.swift */,
+				D46BB0411F8D4F28008DF800 /* Reducers.swift */,
+				D46BB03E1F8D4F08008DF800 /* States.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
 		D46BAFE51F8D22A7008DF800 = {
 			isa = PBXGroup;
 			children = (
@@ -227,9 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				D46BB03C1F8D4EDA008DF800 /* Objects */,
-				D427F2FF1FA663FF008271BD /* Actions.swift */,
-				D46BB0411F8D4F28008DF800 /* Reducers.swift */,
-				D46BB03E1F8D4F08008DF800 /* States.swift */,
+				D427F33F1FA91A95008271BD /* State */,
+				D427F33D1FA91A87008271BD /* BooksService.swift */,
 				D46BB0401F8D4F16008DF800 /* Supporting Files */,
 			);
 			path = Model;
@@ -247,7 +256,6 @@
 		D46BB03C1F8D4EDA008DF800 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				D46BB0381F8D4D46008DF800 /* Author.swift */,
 				D46BB0361F8D4CE6008DF800 /* Book.swift */,
 			);
 			path = Objects;
@@ -569,9 +577,9 @@
 			files = (
 				D427F3001FA663FF008271BD /* Actions.swift in Sources */,
 				D46BB03F1F8D4F08008DF800 /* States.swift in Sources */,
-				D46BB0391F8D4D46008DF800 /* Author.swift in Sources */,
 				D46BB0421F8D4F28008DF800 /* Reducers.swift in Sources */,
 				D46BB0371F8D4CE6008DF800 /* Book.swift in Sources */,
+				D427F33E1FA91A87008271BD /* BooksService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,7 +1,7 @@
-public struct Book {
+public struct Book: Codable {
   var id: String
-  var authorId: String
+  var author: String
   var title: String
   var publishedAt: Date
-  var isFavorite: Bool
+  var coverURL: URL
 }
