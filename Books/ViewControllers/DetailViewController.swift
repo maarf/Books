@@ -118,4 +118,17 @@ extension DetailViewController: Routable {
     completionHandler()
     return self
   }
+
+  func popRouteSegment(
+    _ route: RouteElementIdentifier,
+    animated: Bool,
+    completionHandler: @escaping RoutingCompletionHandler
+  ) {
+    // This is a leaf controller, meaning that it's route is actually an id of
+    // the content, so we remove additional segment form the route
+    detailItemId = nil
+    let newRoute = Array(store.state.navigation.route.dropLast())
+    store.dispatch(SetRouteAction(newRoute))
+    completionHandler()
+  }
 }

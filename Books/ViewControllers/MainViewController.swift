@@ -2,7 +2,7 @@ import ReSwift
 import ReSwiftRouter
 import UIKit
 
-class MainViewController: UISplitViewController {
+final class MainViewController: UISplitViewController {
 
   private let store: Store<AppState>
 
@@ -23,18 +23,25 @@ class MainViewController: UISplitViewController {
 
   // MARK: - Navigation controllers
 
-  private(set) lazy var masterNavigationController: UINavigationController = {
-    return UINavigationController(
-      rootViewController: MasterViewController(store: store))
+  private(set) lazy var masterNavigationController: RoutableNavigationController<MainViewController> = {
+    let controller = RoutableNavigationController<MainViewController>(
+      rootViewController: EmptyViewController())
+    controller.routingDelegate = self
+    return controller
   }()
 
-  private(set) lazy var detailNavigationController: UINavigationController = {
-    let controller = UINavigationController(
+  private(set) lazy var detailNavigationController: RoutableNavigationController<MainViewController> = {
+    let controller = RoutableNavigationController<MainViewController>(
       rootViewController: EmptyViewController())
+    controller.routingDelegate = self
     controller.topViewController?.navigationItem.leftBarButtonItem =
       self.displayModeButtonItem
     return controller
   }()
+
+  // MARK: - State
+
+  fileprivate var isSeparating = false
 }
 
 extension MainViewController: UISplitViewControllerDelegate {
@@ -58,9 +65,17 @@ extension MainViewController: UISplitViewControllerDelegate {
     }
     return false
   }
+
+  public func splitViewController(
+    _ splitViewController: UISplitViewController,
+    separateSecondaryFrom primaryViewController: UIViewController
+  ) -> UIViewController? {
+    isSeparating = true
+    return nil
+  }
 }
 
-extension MainViewController: Routable {
+extension MainViewController: Routable {  
   func pushRouteSegment(
     _ route: RouteElementIdentifier,
     animated: Bool,
@@ -75,5 +90,31 @@ extension MainViewController: Routable {
       default:
         fatalError("[MainViewController] Can't push unhandled route: \(route)")
     }
+  }
+}
+
+extension MainViewController: RoutableNavigationControllerDelegate {
+
+  func routableNavigationController(
+    _ rnc: RNC<MainViewController>,
+    didPush vc: UIVC,
+    animated: Bool,
+    sender: Any?
+  ) {
+    // We don't need to do anything when pushing
+  }
+
+  func routableNavigationController(
+    _ rnc: RNC<MainViewController>,
+    didPop vc: UIVC,
+    animated: Bool,
+    sender: Any?
+  ) {
+    guard isSeparating == false else {
+      isSeparating = false
+      return
+    }
+    let newRoute = Array(store.state.navigation.route.dropLast())
+    store.dispatch(SetRouteAction(newRoute))
   }
 }

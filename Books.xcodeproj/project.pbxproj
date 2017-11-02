@@ -14,6 +14,7 @@
 		D427F3051FA6685D008271BD /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D427F3041FA6685D008271BD /* AppReducer.swift */; };
 		D427F3081FA66E00008271BD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D427F3071FA66E00008271BD /* MainViewController.swift */; };
 		D427F33E1FA91A87008271BD /* BooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D427F33D1FA91A87008271BD /* BooksService.swift */; };
+		D44A3DE21FABAF2000735966 /* RoutableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44A3DE11FABAF1F00735966 /* RoutableNavigationController.swift */; };
 		D46BAFF21F8D22A7008DF800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BAFF11F8D22A7008DF800 /* AppDelegate.swift */; };
 		D46BAFF41F8D22A7008DF800 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BAFF31F8D22A7008DF800 /* MasterViewController.swift */; };
 		D46BAFF61F8D22A7008DF800 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46BAFF51F8D22A7008DF800 /* DetailViewController.swift */; };
@@ -87,6 +88,7 @@
 		D427F3041FA6685D008271BD /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		D427F3071FA66E00008271BD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D427F33D1FA91A87008271BD /* BooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksService.swift; sourceTree = "<group>"; };
+		D44A3DE11FABAF1F00735966 /* RoutableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutableNavigationController.swift; sourceTree = "<group>"; };
 		D46BAFEE1F8D22A7008DF800 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46BAFF11F8D22A7008DF800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D46BAFF31F8D22A7008DF800 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,14 @@
 			path = State;
 			sourceTree = "<group>";
 		};
+		D44A3DE01FABAEF700735966 /* RoutableUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				D44A3DE11FABAF1F00735966 /* RoutableNavigationController.swift */,
+			);
+			path = RoutableUIKit;
+			sourceTree = "<group>";
+		};
 		D46BAFE51F8D22A7008DF800 = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +224,7 @@
 		D46BAFF01F8D22A7008DF800 /* Books */ = {
 			isa = PBXGroup;
 			children = (
+				D44A3DE01FABAEF700735966 /* RoutableUIKit */,
 				D427F3011FA666EA008271BD /* State */,
 				D427F3061FA66DD3008271BD /* ViewControllers */,
 				D46BAFF11F8D22A7008DF800 /* AppDelegate.swift */,
@@ -556,6 +567,7 @@
 				D46BAFF61F8D22A7008DF800 /* DetailViewController.swift in Sources */,
 				D46BAFF41F8D22A7008DF800 /* MasterViewController.swift in Sources */,
 				D46BAFF21F8D22A7008DF800 /* AppDelegate.swift in Sources */,
+				D44A3DE21FABAF2000735966 /* RoutableNavigationController.swift in Sources */,
 				D427F3081FA66E00008271BD /* MainViewController.swift in Sources */,
 				D427F3031FA6672A008271BD /* AppState.swift in Sources */,
 				D49012ED1FAA1786007AA8D5 /* EmptyViewController.swift in Sources */,
