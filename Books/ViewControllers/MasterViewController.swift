@@ -1,5 +1,6 @@
 import Model
 import ReSwift
+import ReSwiftRouter
 import UIKit
 
 class MasterViewController: UITableViewController, StoreSubscriber {
@@ -79,14 +80,64 @@ class MasterViewController: UITableViewController, StoreSubscriber {
     didSelectRowAt indexPath: IndexPath
   ) {
     let book = books[indexPath.row]
-    let detail = DetailViewController(store: store)
-    detail.detailItem = book
-    detail.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-    detail.navigationItem.leftItemsSupplementBackButton = true
+    store.dispatch(SetRouteAction(["Books", "Detail", book.id]))
+  }
+}
 
-    if let main = splitViewController as? MainViewController {
-      main.detailNavigationController.viewControllers = [detail]
-      main.showDetailViewController(main.detailNavigationController, sender: self)
+extension MasterViewController: Routable {
+
+  func pushRouteSegment(
+    _ route: RouteElementIdentifier,
+    animated: Bool,
+    completionHandler: @escaping RoutingCompletionHandler
+  ) -> Routable {
+    switch route {
+      case "Detail":
+        let detail = DetailViewController(store: store)
+        detail.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        detail.navigationItem.leftItemsSupplementBackButton = true
+
+        if let main = splitViewController as? MainViewController {
+          main.detailNavigationController.viewControllers = [detail]
+          if (animated) {
+            main.showDetailViewController(main.detailNavigationController, sender: self)
+            // TODO: Call completion handler after animation finishes
+            completionHandler()
+          } else {
+            UIView.performWithoutAnimation {
+              main.showDetailViewController(main.detailNavigationController, sender: self)
+              completionHandler()
+            }
+          }
+        }
+        return detail
+      default:
+        fatalError("[MasterViewController] Can't push unhandled route: \(route)")
+    }
+  }
+
+  func popRouteSegment(
+    _ route: RouteElementIdentifier,
+    animated: Bool,
+    completionHandler: @escaping RoutingCompletionHandler
+  ) {
+    switch route {
+      case "Detail":
+        if let main = splitViewController as? MainViewController {
+          main.detailNavigationController.viewControllers = [EmptyViewController()]
+          if animated {
+            main.show(main.masterNavigationController, sender: self)
+            // TODO: Call completion handler after animation finishes
+            completionHandler()
+          } else {
+            UIView.performWithoutAnimation {
+              main.show(main.masterNavigationController, sender: self)
+              completionHandler()
+            }
+          }
+        }
+      default:
+        fatalError("[MasterViewController] Can't pop unhandled route: \(route)")
     }
   }
 }

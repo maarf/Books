@@ -1,4 +1,5 @@
 import ReSwift
+import ReSwiftRouter
 import UIKit
 
 class MainViewController: UISplitViewController {
@@ -47,7 +48,7 @@ extension MainViewController: UISplitViewControllerDelegate {
       // nothing; the secondary controller will be discarded.
       if
         let detail = secondary.topViewController as? DetailViewController,
-        detail.detailItem == nil
+        detail.detailItemId == nil
       {
         return true
       }
@@ -56,5 +57,23 @@ extension MainViewController: UISplitViewControllerDelegate {
       }
     }
     return false
+  }
+}
+
+extension MainViewController: Routable {
+  func pushRouteSegment(
+    _ route: RouteElementIdentifier,
+    animated: Bool,
+    completionHandler: @escaping RoutingCompletionHandler
+  ) -> Routable {
+    switch route {
+      case "Books":
+        let master = MasterViewController(store: store)
+        masterNavigationController.viewControllers = [master]
+        completionHandler()
+        return master
+      default:
+        fatalError("[MainViewController] Can't push unhandled route: \(route)")
+    }
   }
 }

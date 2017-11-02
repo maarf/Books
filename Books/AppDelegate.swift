@@ -1,5 +1,6 @@
 import Model
 import ReSwift
+import ReSwiftRouter
 import UIKit
 
 @UIApplicationMain
@@ -7,7 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  let booksService = BooksService()
+  private let booksService = BooksService()
+  private var router: Router<AppState>?
 
   func application(
     _ application: UIApplication,
@@ -43,12 +45,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         booksMiddleware
       ])
 
+    let main = MainViewController(store: store)
+
+    router = Router(
+      store: store,
+      rootRoutable: main,
+      stateTransform: { $0.select { $0.navigation } })
+
     let window = UIWindow(frame: UIScreen.main.bounds)
-    window.rootViewController = MainViewController(store: store)
+    window.rootViewController = main
     window.makeKeyAndVisible()
     self.window = window
 
     DispatchQueue.main.async {
+      store.dispatch(SetRouteAction(["Books"]))
       store.dispatch(RefreshBooks())
     }
 

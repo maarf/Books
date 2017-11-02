@@ -1,8 +1,9 @@
 import Model
 import ReSwift
+import ReSwiftRouter
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, StoreSubscriber {
 
   private let store: Store<AppState>
 
@@ -14,6 +15,8 @@ class DetailViewController: UIViewController {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  // MARK: - Lifecycle
 
   override func loadView() {
     super.loadView()
@@ -31,10 +34,59 @@ class DetailViewController: UIViewController {
     NSLayoutConstraint.activate([topConstraint, leadingConstraint])
   }
 
-  var detailItem: Book? {
+  var isVisible = false
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    isVisible = true
+
+    store.subscribe(self) { $0.select { $0.books } }
+  }
+
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    isVisible = false
+
+    store.unsubscribe(self)
+  }
+
+  // MARK: - State
+
+  var detailItemId: String? {
     didSet {
-      detailsLabel.text = detailItem?.title ?? "None"
+      guard detailItemId != oldValue else { return }
+      // If the view is visible and the book id is updated, we need to ask store
+      // for state because we don't keep it locally and the book state has not
+      // changed nor we will be subscribing, because the controller is visible
+      // and is already a subscriber.
+      if isVisible {
+        process(state: store.state.books)
+      }
     }
+  }
+
+  func newState(state: State<BooksState, BooksState.Error>) {
+    process(state: state)
+  }
+
+  private func process(state: State<BooksState, BooksState.Error>) {
+    if
+      case .success(let booksState) = state,
+      let bookId = detailItemId,
+      let book = find(bookId: bookId, in: booksState)
+    {
+      configure(with: book)
+    }
+  }
+
+  private func find(bookId: String, in state: BooksState) -> Book? {
+    return state.books.first { $0.id == bookId }
+  }
+
+  // MARK: - Views
+
+  private func configure(with book: Book) {
+    detailsLabel.text = book.title
   }
 
   private lazy var detailsLabel: UILabel = {
@@ -42,6 +94,28 @@ class DetailViewController: UIViewController {
     label.text = "Detail"
     return label
   }()
-
 }
 
+extension DetailViewController: Routable {
+
+  func pushRouteSegment(
+    _ route: RouteElementIdentifier,
+    animated: Bool,
+    completionHandler: @escaping RoutingCompletionHandler
+  ) -> Routable {
+    detailItemId = route
+    completionHandler()
+    return self
+  }
+
+  func changeRouteSegment(
+    _ oldRoute: RouteElementIdentifier,
+    to route: RouteElementIdentifier,
+    animated: Bool,
+    completionHandler: @escaping RoutingCompletionHandler
+  ) -> Routable {
+    detailItemId = route
+    completionHandler()
+    return self
+  }
+}
