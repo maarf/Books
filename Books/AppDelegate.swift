@@ -7,6 +7,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
+  let booksService = BooksService()
+
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
@@ -27,8 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       (@escaping DispatchFunction, @escaping () -> AppState?)
       -> (@escaping DispatchFunction)
       -> DispatchFunction
-      = { dispatch, getState in
-        return BooksService().middleware(
+      = { [weak self] dispatch, getState in
+        guard let app = self else { return { n in return { a in n(a) } } }
+        return app.booksService.middleware(
           dispatch: dispatch,
           getState: { getState()?.books })
       }
@@ -44,6 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window.rootViewController = MainViewController(store: store)
     window.makeKeyAndVisible()
     self.window = window
+
+    DispatchQueue.main.async {
+      store.dispatch(RefreshBooks())
+    }
 
     return true
   }

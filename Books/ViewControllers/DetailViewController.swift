@@ -1,3 +1,4 @@
+import Model
 import ReSwift
 import UIKit
 
@@ -30,9 +31,9 @@ class DetailViewController: UIViewController {
     NSLayoutConstraint.activate([topConstraint, leadingConstraint])
   }
 
-  var detailItem: Date? {
+  var detailItem: Book? {
     didSet {
-      detailsLabel.text = detailItem?.description ?? "None"
+      detailsLabel.text = detailItem?.title ?? "None"
     }
   }
 

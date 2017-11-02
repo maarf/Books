@@ -3,6 +3,6 @@ import ReSwift
 import ReSwiftRouter
 
 struct AppState: StateType {
-  var books = BooksState()
+  var books = State<BooksState, BooksState.Error>.notLoaded
   var navigation = NavigationState()
 }

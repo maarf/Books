@@ -1,8 +1,11 @@
 import ReSwift
 
-public struct SetBooksAction: Action {
-  public var books: [Book]
-  public init(books: [Book]) {
-    self.books = books
-  }
+public enum SetBooks: Action {
+  case loading
+  case success(books: [Book])
+  case failure(error: Error)
+}
+
+public struct RefreshBooks: Action {
+  public init() {}
 }

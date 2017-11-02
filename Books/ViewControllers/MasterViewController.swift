@@ -1,7 +1,8 @@
+import Model
 import ReSwift
 import UIKit
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, StoreSubscriber {
 
   private let store: Store<AppState>
 
@@ -19,17 +20,30 @@ class MasterViewController: UITableViewController {
   override func viewWillAppear(_ animated: Bool) {
     clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
     super.viewWillAppear(animated)
+
+    store.subscribe(self) { $0.select { $0.books } }
+  }
+
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+
+    store.unsubscribe(self)
   }
 
   // MARK: - State
 
-  var objects = [
-    Date(),
-    Date(timeIntervalSinceNow: -60*60*1),
-    Date(timeIntervalSinceNow: -60*60*2),
-    Date(timeIntervalSinceNow: -60*60*3),
-    Date(timeIntervalSinceNow: -60*60*4),
-  ]
+  func newState(state: State<BooksState, BooksState.Error>) {
+    switch state {
+      case .success(let booksState):
+        books = booksState.books
+        DispatchQueue.main.async {
+          self.tableView.reloadData()
+        }
+      default: break
+    }
+  }
+
+  var books = [Book]()
 
   // MARK: - Table View
 
@@ -41,7 +55,7 @@ class MasterViewController: UITableViewController {
     _ tableView: UITableView,
     numberOfRowsInSection section: Int
   ) -> Int {
-    return objects.count
+    return books.count
   }
 
   override func tableView(
@@ -55,8 +69,8 @@ class MasterViewController: UITableViewController {
       cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
     }
 
-    let date = objects[indexPath.row]
-    cell.textLabel?.text = date.description
+    let book = books[indexPath.row]
+    cell.textLabel?.text = book.title
     return cell
   }
 
@@ -64,9 +78,9 @@ class MasterViewController: UITableViewController {
     _ tableView: UITableView,
     didSelectRowAt indexPath: IndexPath
   ) {
-    let date = objects[indexPath.row]
+    let book = books[indexPath.row]
     let detail = DetailViewController(store: store)
-    detail.detailItem = date
+    detail.detailItem = book
     detail.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
     detail.navigationItem.leftItemsSupplementBackButton = true
 
