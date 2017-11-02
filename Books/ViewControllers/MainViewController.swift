@@ -1,16 +1,39 @@
+import ReSwift
 import UIKit
 
 class MainViewController: UISplitViewController {
 
-  override init(nibName: String?, bundle: Bundle?) {
-    super.init(nibName: nibName, bundle: bundle)
+  private let store: Store<AppState>
+
+  init(store: Store<AppState>) {
+    self.store = store
+    super.init(nibName: nil, bundle: nil)
     delegate = self
+
+    viewControllers = [
+      masterNavigationController,
+      detailNavigationController,
+    ]
   }
 
   required init?(coder: NSCoder) {
-    super.init(coder: coder)
-    delegate = self
+    fatalError("Not implemented")
   }
+
+  // MARK: - Navigation controllers
+
+  private(set) lazy var masterNavigationController: UINavigationController = {
+    return UINavigationController(
+      rootViewController: MasterViewController(store: store))
+  }()
+
+  private(set) lazy var detailNavigationController: UINavigationController = {
+    let controller = UINavigationController(
+      rootViewController: EmptyViewController())
+    controller.topViewController?.navigationItem.leftBarButtonItem =
+      self.displayModeButtonItem
+    return controller
+  }()
 }
 
 extension MainViewController: UISplitViewControllerDelegate {
@@ -19,14 +42,18 @@ extension MainViewController: UISplitViewControllerDelegate {
     collapseSecondary secondary: UIViewController,
     onto primary: UIViewController
   ) -> Bool {
-    guard
-      let secondary = secondary as? UINavigationController,
-      let detail = secondary.topViewController as? DetailViewController
-    else { return false }
-    if detail.detailItem == nil {
+    if let secondary = secondary as? UINavigationController {
       // Return true to indicate that we have handled the collapse by doing
       // nothing; the secondary controller will be discarded.
-      return true
+      if
+        let detail = secondary.topViewController as? DetailViewController,
+        detail.detailItem == nil
+      {
+        return true
+      }
+      if secondary.topViewController is EmptyViewController {
+        return true
+      }
     }
     return false
   }

@@ -1,37 +1,46 @@
+import ReSwift
 import UIKit
 
 class DetailViewController: UIViewController {
 
-  @IBOutlet weak var detailDescriptionLabel: UILabel!
+  private let store: Store<AppState>
 
-
-  func configureView() {
-    // Update the user interface for the detail item.
-    if let detail = detailItem {
-        if let label = detailDescriptionLabel {
-            label.text = detail.description
-        }
-    }
+  init(store: Store<AppState>) {
+    self.store = store
+    super.init(nibName: nil, bundle: nil)
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    configureView()
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  override func loadView() {
+    super.loadView()
+
+    view.backgroundColor = .white
+
+    view.addSubview(detailsLabel)
+    detailsLabel.translatesAutoresizingMaskIntoConstraints = false
+    let topConstraint = detailsLabel.topAnchor.constraint(
+      equalTo: view.safeAreaLayoutGuide.topAnchor,
+      constant: 10)
+    let leadingConstraint = detailsLabel.leadingAnchor.constraint(
+      equalTo: view.leadingAnchor,
+      constant: 10)
+    NSLayoutConstraint.activate([topConstraint, leadingConstraint])
   }
 
-  var detailItem: NSDate? {
+  var detailItem: Date? {
     didSet {
-        // Update the view.
-        configureView()
+      detailsLabel.text = detailItem?.description ?? "None"
     }
   }
 
+  private lazy var detailsLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Detail"
+    return label
+  }()
 
 }
 

@@ -40,9 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         booksMiddleware
       ])
 
-    let main = window!.rootViewController as! MainViewController    
-    let navigation = main.viewControllers[main.viewControllers.count-1] as! UINavigationController
-    navigation.topViewController!.navigationItem.leftBarButtonItem = main.displayModeButtonItem
+    let window = UIWindow(frame: UIScreen.main.bounds)
+    window.rootViewController = MainViewController(store: store)
+    window.makeKeyAndVisible()
+    self.window = window
+
     return true
   }
 }
